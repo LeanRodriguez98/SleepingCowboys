@@ -46,6 +46,11 @@ public class Cowboy : MonoBehaviour
 
     }
 
+    public void InvokeDie()
+    {
+        Invoke("Die", 3.0f);
+    }
+
     public void Die()
     {
         Debug.Log("Hola");

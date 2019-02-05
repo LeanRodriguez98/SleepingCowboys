@@ -9,8 +9,9 @@ public class Cowboy : MonoBehaviour
     private MeshCollider meshCollider;
     private Vector3[] baseVertices;
     private Player player;
-
-
+    private Material material;
+    private float materialAlpha = 1.0f;
+    private bool disappear = false;
     public Vector3 colliderScale = Vector3.one / 3;
 
     // Use this for initialization
@@ -20,6 +21,8 @@ public class Cowboy : MonoBehaviour
     void Start()
     {
         player = Player.playerInstacne;
+        meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        meshCollider = GetComponentInChildren<MeshCollider>();
 
     }
 
@@ -30,10 +33,29 @@ public class Cowboy : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Hola");
-        gameObject.SetActive(false);
+        meshCollider.enabled = false;
+        disappear = true;
     }
 
+   
+
+    private void Update()
+    {
+        if (disappear)
+        {
+            materialAlpha -= Time.deltaTime;
+            if (materialAlpha > 0)
+            {
+                meshRenderer.material.SetFloat("_Alpha", materialAlpha);
+            }
+            else if (materialAlpha <= 0)
+            {
+                materialAlpha = 0.0f;
+                meshRenderer.material.SetFloat("_Alpha", materialAlpha);
+                gameObject.SetActive(false);
+            }
+        }
+    }
 
     public void GenerateCollider()
     {

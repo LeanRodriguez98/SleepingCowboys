@@ -8,19 +8,24 @@ public class Cowboy : MonoBehaviour
     private SkinnedMeshRenderer meshRenderer;
     private MeshCollider meshCollider;
     private Vector3[] baseVertices;
+    private Player player;
+
+
     public Vector3 colliderScale = Vector3.one / 3;
+
     // Use this for initialization
     
 
     // Update is called once per frame
-    void Update()
+    void Start()
     {
+        player = Player.playerInstacne;
 
     }
 
     public void InvokeDie()
     {
-        Invoke("Die", 3.0f);
+        Invoke("Die", player.shootTime);
     }
 
     public void Die()
@@ -37,8 +42,7 @@ public class Cowboy : MonoBehaviour
         Mesh colliderMesh = new Mesh();
         meshRenderer.BakeMesh(colliderMesh);
 
-       // if (baseVertices == null)
-            baseVertices = colliderMesh.vertices;
+        baseVertices = colliderMesh.vertices;
         Vector3[] vertices = new Vector3[baseVertices.Length];
         for (int i = 0; i < vertices.Length; i++)
         {

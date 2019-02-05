@@ -12,8 +12,12 @@ public class Cowboy : MonoBehaviour
     private Material material;
     private float materialAlpha = 1.0f;
     private bool disappear = false;
-    public Vector3 colliderScale = Vector3.one / 3;
+    private ObjectPooler objectPoolerInstance;
+    public GameObject[] bloodEffects;
 
+
+
+    public Vector3 colliderScale = Vector3.one / 3;
     // Use this for initialization
     
 
@@ -21,6 +25,7 @@ public class Cowboy : MonoBehaviour
     void Start()
     {
         player = Player.playerInstacne;
+        objectPoolerInstance = ObjectPooler.instance;
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         meshCollider = GetComponentInChildren<MeshCollider>();
 
@@ -37,7 +42,10 @@ public class Cowboy : MonoBehaviour
         disappear = true;
     }
 
-   
+    public void SpawnBlood()
+    {
+        //objectPoolerInstance.SpawnForPool(bloodEffects[Random.Range(0,bloodEffects.Length)],)
+    }
 
     private void Update()
     {

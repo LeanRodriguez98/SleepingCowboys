@@ -13,9 +13,8 @@ public class Cowboy : MonoBehaviour
     private float materialAlpha = 1.0f;
     private bool disappear = false;
     private ObjectPooler objectPoolerInstance;
-    public GameObject[] bloodEffects;
-
-
+    private PoolManager poolManagerInstance;
+    private string[] bloodEffectsTags;
 
     public Vector3 colliderScale = Vector3.one / 3;
     // Use this for initialization
@@ -26,8 +25,10 @@ public class Cowboy : MonoBehaviour
     {
         player = Player_VR.playerInstacne;
         objectPoolerInstance = ObjectPooler.instance;
+        poolManagerInstance = PoolManager.instance;
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         meshCollider = GetComponentInChildren<MeshCollider>();
+        bloodEffectsTags = poolManagerInstance.GetTagsGrup("Blood");
 
     }
 
@@ -39,13 +40,24 @@ public class Cowboy : MonoBehaviour
     public void Die()
     {
         meshCollider.enabled = false;
-        disappear = true;
         SpawnBlood();
     }
 
     public void SpawnBlood()
     {
-        objectPoolerInstance.SpawnForPool(bloodEffects[Random.Range(0, bloodEffects.Length)].name, player.reticlePointer.GetPointAlongPointer(player.reticlePointer.ReticleDistanceInMeters), Quaternion.Euler(-player.gun.transform.eulerAngles));
+        Debug.Log("SpawnBlood");
+
+        int index = Random.Range(0, bloodEffectsTags.Length);
+        Debug.Log(objectPoolerInstance.GetParticleSistemLengh(bloodEffectsTags[index]));
+
+        objectPoolerInstance.SpawnParticleFromPool(bloodEffectsTags[index], player.reticlePointer.GetPointAlongPointer(player.reticlePointer.ReticleDistanceInMeters), Quaternion.Euler(-player.gun.transform.eulerAngles));
+        Invoke("Desappear", objectPoolerInstance.GetParticleSistemLengh(bloodEffectsTags[index]));
+    }
+
+    public void Desappear()
+    {
+        Debug.Log("disappear");
+        disappear = true;
     }
 
     private void Update()

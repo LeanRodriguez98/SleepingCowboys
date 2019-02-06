@@ -8,7 +8,7 @@ public class Cowboy : MonoBehaviour
     private SkinnedMeshRenderer meshRenderer;
     private MeshCollider meshCollider;
     private Vector3[] baseVertices;
-    private Player player;
+    private Player_VR player;
     private Material material;
     private float materialAlpha = 1.0f;
     private bool disappear = false;
@@ -24,7 +24,7 @@ public class Cowboy : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        player = Player.playerInstacne;
+        player = Player_VR.playerInstacne;
         objectPoolerInstance = ObjectPooler.instance;
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         meshCollider = GetComponentInChildren<MeshCollider>();
@@ -40,11 +40,12 @@ public class Cowboy : MonoBehaviour
     {
         meshCollider.enabled = false;
         disappear = true;
+        SpawnBlood();
     }
 
     public void SpawnBlood()
     {
-        //objectPoolerInstance.SpawnForPool(bloodEffects[Random.Range(0,bloodEffects.Length)],)
+        objectPoolerInstance.SpawnForPool(bloodEffects[Random.Range(0, bloodEffects.Length)].name, player.reticlePointer.GetPointAlongPointer(player.reticlePointer.ReticleDistanceInMeters), Quaternion.Euler(-player.gun.transform.eulerAngles));
     }
 
     private void Update()

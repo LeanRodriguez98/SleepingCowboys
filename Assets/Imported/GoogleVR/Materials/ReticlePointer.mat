@@ -59,7 +59,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DistanceInMeters: 6
+    - _DistanceInMeters: 9
     - _DstBlend: 0
     - _Glossiness: 0.5
     - _InnerDiameter: 0.8

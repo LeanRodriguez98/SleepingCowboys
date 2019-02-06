@@ -45,18 +45,19 @@ public class Cowboy : MonoBehaviour
 
     public void SpawnBlood()
     {
-        Debug.Log("SpawnBlood");
 
         int index = Random.Range(0, bloodEffectsTags.Length);
-        Debug.Log(objectPoolerInstance.GetParticleSistemLengh(bloodEffectsTags[index]));
 
-        objectPoolerInstance.SpawnParticleFromPool(bloodEffectsTags[index], player.reticlePointer.GetPointAlongPointer(player.reticlePointer.ReticleDistanceInMeters), Quaternion.Euler(-player.gun.transform.eulerAngles));
+        RaycastHit hitInfo;
+        if (Physics.Raycast(player.reticlePointer.GetRayForDistance(player.reticlePointer.ReticleDistanceInMeters).ray, out hitInfo, 100f))
+            objectPoolerInstance.SpawnParticleFromPool(bloodEffectsTags[index], player.reticlePointer.GetPointAlongPointer(player.reticlePointer.ReticleDistanceInMeters), Quaternion.FromToRotation(Vector3.up, hitInfo.normal));
+
+        //Quaternion.Euler(player.gun.transform.eulerAngles - new Vector3(-180,0,-180))
         Invoke("Desappear", objectPoolerInstance.GetParticleSistemLengh(bloodEffectsTags[index]));
     }
 
     public void Desappear()
     {
-        Debug.Log("disappear");
         disappear = true;
     }
 

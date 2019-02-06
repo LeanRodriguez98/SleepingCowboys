@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4000012961768668}
   - component: {fileID: 198000014159833656}
   - component: {fileID: 199000012492269190}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BloodStreamEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4000012818420242}
   - component: {fileID: 198000010596725160}
   - component: {fileID: 199000012570322746}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: PoolEmitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4000012291204876}
   - component: {fileID: 198000010148556592}
   - component: {fileID: 199000013376511174}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GoopSplash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4000011364351328}
   - component: {fileID: 198000011579028428}
   - component: {fileID: 199000013497606386}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GoopPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}

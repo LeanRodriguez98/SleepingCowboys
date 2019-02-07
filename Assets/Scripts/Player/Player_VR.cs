@@ -1,19 +1,15 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_VR : MonoBehaviour {
-
-    public static Player_VR playerInstacne;
-    private Rigidbody rb;
-    [HideInInspector] public Gun gun;
-    public GvrReticlePointer reticlePointer;
+public class Player_VR : Player
+{
 
     private bool movement = false;
 
+    public GvrReticlePointer reticlePointer;
     public Camera cam;
-    public float shootTime;
-    public float movementSpeed;
 
     private void Awake()
     {
@@ -22,13 +18,28 @@ public class Player_VR : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         rb = GetComponent<Rigidbody>();
         gun = GetComponentInChildren<Gun>();
+        pointerRay = reticlePointer.GetRayForDistance(reticlePointer.ReticleDistanceInMeters).ray;
+        hitPosition = reticlePointer.GetPointAlongPointer(reticlePointer.ReticleDistanceInMeters);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    public override Ray GetPointerRay()
+    {
+        pointerRay = reticlePointer.GetRayForDistance(reticlePointer.ReticleDistanceInMeters).ray;
+        return pointerRay;
+    }
+
+    public override Vector3 GetHitPosition()
+    {
+        hitPosition = reticlePointer.GetPointAlongPointer(reticlePointer.ReticleDistanceInMeters);
+        return hitPosition;
+    }
+    // Update is called once per frame
+    void Update()
+    {
         if (movement)
         {
             rb.position += (new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z) * Time.deltaTime * movementSpeed);
@@ -47,5 +58,6 @@ public class Player_VR : MonoBehaviour {
         rb.angularVelocity = Vector3.zero;
     }
 
-   
+
 }
+

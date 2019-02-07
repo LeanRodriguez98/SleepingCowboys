@@ -8,7 +8,7 @@ public class Cowboy : MonoBehaviour
     private SkinnedMeshRenderer meshRenderer;
     private MeshCollider meshCollider;
     private Vector3[] baseVertices;
-    private Player_VR player;
+    private Player player;
     private Material material;
     private float materialAlpha = 1.0f;
     private bool disappear = false;
@@ -18,12 +18,12 @@ public class Cowboy : MonoBehaviour
 
     public Vector3 colliderScale = Vector3.one / 3;
     // Use this for initialization
-    
+
 
     // Update is called once per frame
     void Start()
     {
-        player = Player_VR.playerInstacne;
+        player = Player.playerInstacne;
         objectPoolerInstance = ObjectPooler.instance;
         poolManagerInstance = PoolManager.instance;
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
@@ -49,8 +49,8 @@ public class Cowboy : MonoBehaviour
         int index = Random.Range(0, bloodEffectsTags.Length);
 
         RaycastHit hitInfo;
-        if (Physics.Raycast(player.reticlePointer.GetRayForDistance(player.reticlePointer.ReticleDistanceInMeters).ray, out hitInfo, 100f))
-            objectPoolerInstance.SpawnParticleFromPool(bloodEffectsTags[index], player.reticlePointer.GetPointAlongPointer(player.reticlePointer.ReticleDistanceInMeters), Quaternion.FromToRotation(Vector3.up, hitInfo.normal));
+        if (Physics.Raycast(player.GetPointerRay(), out hitInfo, 100f))
+            objectPoolerInstance.SpawnParticleFromPool(bloodEffectsTags[index], player.GetHitPosition(), Quaternion.FromToRotation(Vector3.up, hitInfo.normal));
 
         //Quaternion.Euler(player.gun.transform.eulerAngles - new Vector3(-180,0,-180))
         Invoke("Desappear", objectPoolerInstance.GetParticleSistemLengh(bloodEffectsTags[index]));

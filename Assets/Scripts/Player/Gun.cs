@@ -6,7 +6,6 @@ public class Gun : MonoBehaviour {
 
     public GameObject bulletSpawnPoint;
     public Camera cam;
-    public GameObject cube;
 
     void Start () {
 		
@@ -14,7 +13,6 @@ public class Gun : MonoBehaviour {
 	
 	void Update () {
        
-       //Instantiate(cube, reticlePointer.GetPointAlongPointer(reticlePointer.ReticleDistanceInMeters), Quaternion.identity);
         
     }
 

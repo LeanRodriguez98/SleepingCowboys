@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         for (int i = 0; i < player_VR.Length; i++)
         {
-            player_VR[i].SetActive(true);
+           // player_VR[i].SetActive(true);
 
         }
 #endif

@@ -28,7 +28,11 @@ public class Player_PC : Player
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if(gun.Fire())
+                gun.SpawnBullet();
+        }
     }
 
     private void FixedUpdate()
@@ -50,11 +54,16 @@ public class Player_PC : Player
 
     public override Ray GetPointerRay()
     {
+        pointerRay = new Ray(cam.transform.position, cam.transform.forward);
         return pointerRay;
     }
 
+  
+
     public override Vector3 GetHitPosition()
     {
+        hitPosition = gun.GetHitPoint();
+
         return hitPosition;
     }
 }

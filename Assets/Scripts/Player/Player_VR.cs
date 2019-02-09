@@ -17,6 +17,11 @@ public class Player_VR : Player
 
     }
 
+    public void ShootBullet()
+    {
+        gun.SpawnBullet();
+    }
+
     // Use this for initialization
     void Start()
     {

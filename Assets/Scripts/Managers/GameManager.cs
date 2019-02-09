@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 #if UNITY_STANDALONE_WIN
         Application.targetFrameRate = 120;
         for (int i = 0; i < player_PC.Length; i++)

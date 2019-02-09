@@ -6,23 +6,43 @@ public class Gun : MonoBehaviour {
 
     public GameObject bulletSpawnPoint;
     public Camera cam;
-
+    private Vector3 hitPoint;
     void Start () {
 		
 	}
 	
 	void Update () {
-       
-        
+
     }
 
-    public void InvokeFire(float timeToFire)
+  
+
+    public bool Fire()
     {
-        Invoke("Fire", timeToFire);
+        RaycastHit hit;
+
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 100.0f))
+        {
+            Debug.DrawRay(cam.transform.position, cam.transform.forward * 100, Color.green, 10.0f);
+            hitPoint = hit.point;
+            Cowboy cowboy = hit.transform.GetComponentInParent<Cowboy>();
+            if (cowboy != null)
+            {
+                cowboy.Die();
+                Debug.Log("Fire");
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void Fire()
+    public Vector3 GetHitPoint()
     {
-       
+        return hitPoint;
+    }
+
+    public void SpawnBullet()
+    {
+        Debug.Log("BulletSpawned");
     }
 }

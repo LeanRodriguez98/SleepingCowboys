@@ -25,9 +25,11 @@ public class GameManager : MonoBehaviour
 
 #if UNITY_ANDROID
         Application.targetFrameRate = 60;
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
         for (int i = 0; i < player_VR.Length; i++)
         {
-           // player_VR[i].SetActive(true);
+            // player_VR[i].SetActive(true);
 
         }
 #endif

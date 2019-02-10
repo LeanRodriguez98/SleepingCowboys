@@ -20,10 +20,11 @@ public class PoolOfParticles
 
 public class ObjectPooler : MonoBehaviour
 {
-
+    [Header("Objects")]
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
-
+    [Space(10)]
+    [Header("Particles")]
     public List<PoolOfParticles> particlesPools;
     public Dictionary<string, Queue<ParticleSystem>> particlesPoolDictionary;
 
@@ -74,7 +75,7 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    public GameObject SpawnForPool(string tag, Vector3 position, Quaternion rotation)
+    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
         if (!poolDictionary.ContainsKey(tag))
         {

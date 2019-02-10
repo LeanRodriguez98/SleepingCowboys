@@ -40,6 +40,7 @@ public class Cowboy : MonoBehaviour
     public void Die()
     {
         meshCollider.enabled = false;
+
         SpawnBlood();
     }
 
@@ -107,4 +108,5 @@ public class Cowboy : MonoBehaviour
 
 
     }
+
 }

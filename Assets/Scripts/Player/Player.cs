@@ -23,16 +23,6 @@ public class Player : MonoBehaviour
     public virtual Vector3 GetHitPosition()
     { return hitPosition; }
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+   
 }
 

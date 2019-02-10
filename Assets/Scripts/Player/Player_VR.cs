@@ -63,6 +63,15 @@ public class Player_VR : Player
         rb.angularVelocity = Vector3.zero;
     }
 
+    public void InvokeSpawnBullet()
+    {
+        Invoke("SpawnBullet", shootTime);
+    }
 
+    public void SpawnBullet()
+    {
+        gun.SetHitPoint(GetHitPosition());
+        gun.SpawnBullet();
+    }
 }
 

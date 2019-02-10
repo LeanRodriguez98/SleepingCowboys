@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Gun : MonoBehaviour {
 
     public GameObject bulletSpawnPoint;
     public Camera cam;
     private Vector3 hitPoint;
-    void Start () {
-		
-	}
-	
-	void Update () {
-
+    private ObjectPooler objectPoolerInstance;
+    private PoolManager poolManagerInstance;
+    private string[] bulletsTags;
+    private void Start()
+    {
+        objectPoolerInstance = ObjectPooler.instance;
+        poolManagerInstance = PoolManager.instance;
+        bulletsTags = poolManagerInstance.GetTagsGrup("Bullet");
     }
 
   
@@ -25,11 +28,11 @@ public class Gun : MonoBehaviour {
         {
             Debug.DrawRay(cam.transform.position, cam.transform.forward * 100, Color.green, 10.0f);
             hitPoint = hit.point;
+            
             Cowboy cowboy = hit.transform.GetComponentInParent<Cowboy>();
             if (cowboy != null)
             {
                 cowboy.Die();
-                Debug.Log("Fire");
                 return true;
             }
         }
@@ -41,8 +44,15 @@ public class Gun : MonoBehaviour {
         return hitPoint;
     }
 
+    public void SetHitPoint(Vector3 point)
+    {
+        hitPoint = point;
+    }
+
     public void SpawnBullet()
     {
-        Debug.Log("BulletSpawned");
+        EditorApplication.isPaused = true;
+        bulletSpawnPoint.transform.LookAt(hitPoint);
+        objectPoolerInstance.SpawnFromPool(bulletsTags[Random.Range(0,bulletsTags.Length)],bulletSpawnPoint.transform.position,bulletSpawnPoint.transform.rotation);
     }
 }

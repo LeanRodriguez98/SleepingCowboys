@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
 
 
 
-    public static Player playerInstacne;
     [HideInInspector] public Gun gun;
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public Ray pointerRay;

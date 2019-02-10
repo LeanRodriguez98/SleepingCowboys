@@ -11,11 +11,7 @@ public class Player_VR : Player
     public GvrReticlePointer reticlePointer;
     public Camera cam;
 
-    private void Awake()
-    {
-        playerInstacne = this;
-
-    }
+   
 
     public void ShootBullet()
     {
@@ -73,5 +69,7 @@ public class Player_VR : Player
         gun.SetHitPoint(GetHitPosition());
         gun.SpawnBullet();
     }
+
+    
 }
 

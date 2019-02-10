@@ -17,13 +17,15 @@ public class Cowboy : MonoBehaviour
     private string[] bloodEffectsTags;
 
     public Vector3 colliderScale = Vector3.one / 3;
-    // Use this for initialization
 
 
-    // Update is called once per frame
+    public void SetPlayer(Player playerType)
+    {
+        player = playerType;
+    }
+
     void Start()
     {
-        player = Player.playerInstacne;
         objectPoolerInstance = ObjectPooler.instance;
         poolManagerInstance = PoolManager.instance;
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
@@ -35,6 +37,7 @@ public class Cowboy : MonoBehaviour
     public void InvokeDie()
     {
         Invoke("Die", player.shootTime);
+
     }
 
     public void Die()

@@ -12,12 +12,7 @@ public class Player_PC : Player
     public float maxCameraAngleDown = -90.0f;
     private float cameraRotationX = 0.0f;
     private float cameraRotationY = 0.0f;
-    private void Awake()
-    {
-        playerInstacne = this;
-
-    }
-
+   
     // Use this for initialization
     void Start()
     {

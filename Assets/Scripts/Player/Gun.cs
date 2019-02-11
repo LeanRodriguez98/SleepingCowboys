@@ -51,6 +51,7 @@ public class Gun : MonoBehaviour {
 
     public void SpawnBullet()
     {
+        //EditorApplication.isPaused = true;
         bulletSpawnPoint.transform.LookAt(hitPoint);
         objectPoolerInstance.SpawnFromPool(bulletsTags[Random.Range(0,bulletsTags.Length)],bulletSpawnPoint.transform.position,bulletSpawnPoint.transform.rotation);
     }

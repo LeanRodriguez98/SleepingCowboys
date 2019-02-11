@@ -52,8 +52,7 @@ public class Cowboy : MonoBehaviour
 
         int index = Random.Range(0, bloodEffectsTags.Length);
 
-        RaycastHit hitInfo;
-        if (Physics.Raycast(player.GetPointerRay(), out hitInfo, 100f))
+        
             objectPoolerInstance.SpawnParticleFromPool(bloodEffectsTags[index], player.GetHitPosition(),
               //Quaternion.FromToRotation(Vector3.up, hitInfo.normal));// Replace this whit the bottom code's line if the blood don't looks good. This line spawn the blood to the normal of the mesh 
               Quaternion.Euler(player.gun.transform.eulerAngles - new Vector3(-180, 0, -180))); // and this line spawn the blood faceing the gun

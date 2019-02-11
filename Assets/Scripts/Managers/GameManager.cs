@@ -1,10 +1,6 @@
-﻿
-
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 public class GameManager : MonoBehaviour
 {
     [Header("Elements of the VR game")]
@@ -15,6 +11,10 @@ public class GameManager : MonoBehaviour
     public Player player_PC;
     public GameObject[] player_PC_Elements;
     [Space(20)]
+    [Tooltip("The time of te game in seconds")]
+    public float gameTime;
+
+
     public List<Cowboy> cowboys;
     public int cantOfCowboysInGame;
     // Use this for initialization
@@ -74,7 +74,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Time.timeSinceLevelLoad > gameTime)
+        {
+            Debug.Log("GameOver");
+        }
     }
 
     public void FindCowboys()

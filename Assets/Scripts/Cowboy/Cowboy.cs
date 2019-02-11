@@ -14,6 +14,7 @@ public class Cowboy : MonoBehaviour
     private bool disappear = false;
     private ObjectPooler objectPoolerInstance;
     private PoolManager poolManagerInstance;
+    private GameManager gameManagerInstance;
     private string[] bloodEffectsTags;
 
     public Vector3 colliderScale = Vector3.one / 3;
@@ -28,6 +29,7 @@ public class Cowboy : MonoBehaviour
     {
         objectPoolerInstance = ObjectPooler.instance;
         poolManagerInstance = PoolManager.instance;
+        gameManagerInstance = GameManager.instance;
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         meshCollider = GetComponentInChildren<MeshCollider>();
         bloodEffectsTags = poolManagerInstance.GetTagsGrup("Blood");
@@ -57,6 +59,7 @@ public class Cowboy : MonoBehaviour
               //Quaternion.FromToRotation(Vector3.up, hitInfo.normal));// Replace this whit the bottom code's line if the blood don't looks good. This line spawn the blood to the normal of the mesh 
               Quaternion.Euler(player.gun.transform.eulerAngles - new Vector3(-180, 0, -180))); // and this line spawn the blood faceing the gun
         Invoke("Desappear", objectPoolerInstance.GetParticleSistemLengh(bloodEffectsTags[index]));
+        gameManagerInstance.UpdateRemainingCowboys(1);
     }
 
     public void Desappear()

@@ -18,6 +18,14 @@ public class PoolOfParticles
     public int size;
 }
 
+[System.Serializable]
+public class PoolOfSounds
+{
+    [HideInInspector] public string tag;
+    public PoolableAudio soundPrefab;
+    public int size;
+}
+
 public class ObjectPooler : MonoBehaviour
 {
     [Header("Objects")]
@@ -27,6 +35,10 @@ public class ObjectPooler : MonoBehaviour
     [Header("Particles")]
     public List<PoolOfParticles> particlesPools;
     public Dictionary<string, Queue<ParticleSystem>> particlesPoolDictionary;
+    [Space(10)]
+    [Header("Sounds")]
+    public List<PoolOfSounds> soundsPools;
+    public Dictionary<string, Queue<PoolableAudio>> soundsPoolsDictionary;
 
     public static ObjectPooler instance;
 
@@ -39,7 +51,7 @@ public class ObjectPooler : MonoBehaviour
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
         particlesPoolDictionary = new Dictionary<string, Queue<ParticleSystem>>();
-
+        soundsPoolsDictionary = new Dictionary<string, Queue<PoolableAudio>>();
         foreach (Pool pool in pools)
         {
             pool.tag = pool.prefab.gameObject.name;
@@ -72,6 +84,23 @@ public class ObjectPooler : MonoBehaviour
             }
 
             particlesPoolDictionary.Add(poolParticle.tag, particlePool);
+        }
+
+        foreach (PoolOfSounds poolSound in soundsPools)
+        {
+            poolSound.tag = poolSound.soundPrefab.gameObject.name;
+
+            Queue<PoolableAudio> soundPool = new Queue<PoolableAudio>();
+
+            for (int i = 0; i < poolSound.size; i++)
+            {
+                PoolableAudio aso = Instantiate(poolSound.soundPrefab);
+                aso.transform.SetParent(this.gameObject.transform);
+                aso.gameObject.SetActive(false);
+                soundPool.Enqueue(aso);
+            }
+
+            soundsPoolsDictionary.Add(poolSound.tag, soundPool);
         }
     }
 
@@ -113,7 +142,50 @@ public class ObjectPooler : MonoBehaviour
             goToSpawn.Play();
             return goToSpawn;
         }
-        Debug.Log("Fail");
+        return null;
+
+    }
+
+    public PoolableAudio SpawnSoundFromPool(string tag, Vector3 position, Quaternion rotation)
+    {
+
+        if (!soundsPoolsDictionary.ContainsKey(tag))
+        {
+            Debug.LogWarning("Pool of sounds with tag " + tag + " dosen't exist in " + gameObject.name);
+            return null;
+        }
+        PoolableAudio goToSpawn = soundsPoolsDictionary[tag].Dequeue();
+        if (goToSpawn != null)
+        {
+            goToSpawn.gameObject.SetActive(true);
+            goToSpawn.gameObject.transform.position = position;
+            goToSpawn.gameObject.transform.rotation = rotation;
+            soundsPoolsDictionary[tag].Enqueue(goToSpawn);
+            goToSpawn.PlayOneShot();
+            return goToSpawn;
+        }
+        return null;
+
+    }
+
+    public PoolableAudio SpawnSoundFromPool(string tag, Vector3 position, Quaternion rotation, float time)
+    {
+
+        if (!soundsPoolsDictionary.ContainsKey(tag))
+        {
+            Debug.LogWarning("Pool of sounds with tag " + tag + " dosen't exist in " + gameObject.name);
+            return null;
+        }
+        PoolableAudio goToSpawn = soundsPoolsDictionary[tag].Dequeue();
+        if (goToSpawn != null)
+        {
+            goToSpawn.gameObject.SetActive(true);
+            goToSpawn.gameObject.transform.position = position;
+            goToSpawn.gameObject.transform.rotation = rotation;
+            soundsPoolsDictionary[tag].Enqueue(goToSpawn);
+            goToSpawn.PlayOneShot(time);
+            return goToSpawn;
+        }
         return null;
 
     }
@@ -132,6 +204,23 @@ public class ObjectPooler : MonoBehaviour
 
         particlesPoolDictionary[tag].Enqueue(ps);
 
+        return t;
+
+    }
+
+    public float GetSoundDurationh(string tag)
+    {
+        if (!soundsPoolsDictionary.ContainsKey(tag))
+        {
+            Debug.LogWarning("Pool of sounds with tag " + tag + " dosen't exist in " + gameObject.name);
+            return 0.0f;
+        }
+
+        PoolableAudio aso = soundsPoolsDictionary[tag].Dequeue();
+
+        float t = aso.GetSoundDuration();
+
+        soundsPoolsDictionary[tag].Enqueue(aso);
 
         return t;
 

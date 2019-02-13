@@ -40,7 +40,8 @@ public class UI_MainMenu : MonoBehaviour {
         {
             float progress = Mathf.Clamp01(asyncLoading.progress / 0.9f);
             loadingCircle.fillAmount = progress;
-            yield return new WaitForSeconds(1f);
+            Debug.Log(progress);
+            yield return null;
         }
     }
 }

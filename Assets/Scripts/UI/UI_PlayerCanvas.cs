@@ -6,6 +6,14 @@ using UnityEngine.UI;
 public class UI_PlayerCanvas : MonoBehaviour {
     public Text timeText;
     public Text remainingCowboysText;
+    private Animator animator;
+
+    private void OnEnable()
+    {
+        animator = GetComponent<Animator>();
+        if(animator != null)
+            animator.SetTrigger("FadeOut");
+    }
 
     public void SetTime(string _timeText)
     {

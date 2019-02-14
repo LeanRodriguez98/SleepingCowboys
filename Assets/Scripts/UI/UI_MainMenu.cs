@@ -4,19 +4,42 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class UI_MainMenu : MonoBehaviour {
+public class UI_MainMenu : MonoBehaviour
+{
+    public RuntimeAnimatorController fadeAnimationPC;
+    public RuntimeAnimatorController fadeAnimationVR;
+    public GameObject tutorialImagePC;
+    public GameObject tutorialImageVR;
 
-    public Animator fadeAnimator;
+
+    public GameObject loadingPivot;
     public Image loadingCircle;
-    private AsyncOperation asyncLoading;
-	// Use this for initialization
-	void Start () {
- 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    public float loadingCircleSpeed;
 
+    private AsyncOperation asyncLoading;
+    private Animator fadeAnimator;
+
+
+    // Use this for initialization
+    void Start()
+    {
+        fadeAnimator = GetComponent<Animator>();
+        SelectAnimation();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        /*if (loadingPivot.activeSelf)
+        {
+            loadingPivot.transform.Rotate(0, 0, -loadingCircleSpeed * Time.deltaTime);
+        }*/
+      
+    }
+
+    public void AllowSceneActivationTrue()
+    {
+        asyncLoading.allowSceneActivation = true;
     }
 
     public void LoadScene()
@@ -26,22 +49,27 @@ public class UI_MainMenu : MonoBehaviour {
 
     public void ChangeScene(string sceneName)
     {
+        //loadingPivot.SetActive(true);
         StartCoroutine(LoadAsyncScene(sceneName));
     }
 
+    public void SelectAnimation()
+    {
+#if UNITY_STANDALONE_WIN
+        fadeAnimator.runtimeAnimatorController = fadeAnimationPC;
+#endif
+#if UNITY_ANDROID
+        fadeAnimator.runtimeAnimatorController = fadeAnimationVR;
+#endif
 
-  
+    }
+
 
     IEnumerator LoadAsyncScene(string sceneName)
     {
         asyncLoading = SceneManager.LoadSceneAsync(sceneName);
-        loadingCircle.gameObject.SetActive(true);
-        while (!asyncLoading.isDone)
-        {
-            float progress = Mathf.Clamp01(asyncLoading.progress / 0.9f);
-            loadingCircle.fillAmount = progress;
-            Debug.Log(progress);
-            yield return null;
-        }
+        asyncLoading.allowSceneActivation = false;
+        yield return new WaitForSeconds(1.0f);
     }
 }
+    

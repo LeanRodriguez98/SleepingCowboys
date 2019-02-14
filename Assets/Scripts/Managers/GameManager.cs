@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 
-//#if UNITY_STANDALONE_WIN
+#if UNITY_STANDALONE_WIN
         Application.targetFrameRate = 120;
         player_PC.player.gameObject.SetActive(true);
         player_PC.playerCanvas.gameObject.SetActive(true);
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
             cowboys[i].SetPlayer(player_PC.player);
         }
 
-/*#endif
+#endif
 
 #if UNITY_ANDROID
         Application.targetFrameRate = 60;
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
             cowboys[i].SetPlayer(player_VR.player);
         }
 
-#endif*/
+#endif
 
         
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -80,10 +81,12 @@ public class GameManager : MonoBehaviour
         {
             cowboys[i].SetPlayer(player_VR.player);
         }
-        
+        UnityEngine.XR.XRSettings.enabled = true;
+
+
+
 #endif
 
-        
 
         for (int i = 0; i < cantOfCowboysInGame; i++)
         {
@@ -142,4 +145,7 @@ public class GameManager : MonoBehaviour
         auxCantOfCowboysInGame-= cant;
         canvasToUpdate.SetRemainingCowboys(auxCantOfCowboysInGame.ToString() + " /  " + cantOfCowboysInGame.ToString());
     }
+
+
+    
 }

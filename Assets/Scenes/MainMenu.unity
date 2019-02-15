@@ -1158,7 +1158,6 @@ GameObject:
   - component: {fileID: 1709667574}
   - component: {fileID: 1709667577}
   - component: {fileID: 1709667576}
-  - component: {fileID: 1709667575}
   m_Layer: 5
   m_Name: LoadingCircle
   m_TagString: Untagged
@@ -1186,17 +1185,6 @@ RectTransform:
   m_AnchoredPosition: {x: 51.559998, y: -51.08}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
---- !u!114 &1709667575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1709667573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddc13e7e16b69304199d88936e2c033e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1709667576
 MonoBehaviour:
   m_ObjectHideFlags: 0

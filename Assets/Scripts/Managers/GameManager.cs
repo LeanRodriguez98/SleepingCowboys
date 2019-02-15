@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 
-#if UNITY_STANDALONE_WIN
+/*#if UNITY_STANDALONE_WIN
         Application.targetFrameRate = 120;
         player_PC.player.gameObject.SetActive(true);
         player_PC.playerCanvas.gameObject.SetActive(true);
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
 
 #endif
 
-#if UNITY_ANDROID
+#if UNITY_ANDROID*/
         Application.targetFrameRate = 60;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         player_VR.player.gameObject.SetActive(true);
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
 
 
 
-#endif
+//#endif
 
 
         for (int i = 0; i < cantOfCowboysInGame; i++)

@@ -17,7 +17,7 @@ public class UI_MainMenu : MonoBehaviour
     public float loadingCircleSpeed;
 
     private AsyncOperation asyncLoading;
-    private Animator fadeAnimator;
+    public Animator fadeAnimator;
 
 
     // Use this for initialization
@@ -25,6 +25,9 @@ public class UI_MainMenu : MonoBehaviour
     {
         fadeAnimator = GetComponent<Animator>();
         SelectAnimation();
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame

@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public int cantOfCowboysInGame;
     private int auxCantOfCowboysInGame;
 
+    private Player currentPlayer;
     private UI_PlayerCanvas canvasToUpdate;
     // Use this for initialization
     private void Awake()
@@ -57,7 +58,7 @@ public class GameManager : MonoBehaviour
 		}
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
+        currentPlayer = player_PC.player;
         for (int i = 0; i < cowboys.Count; i++)
         {
             cowboys[i].SetPlayer(player_PC.player);
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
             player_VR.playerElements[i].SetActive(true);
 
         }
+        currentPlayer = player_VR.player;
 
         for (int i = 0; i < cowboys.Count; i++)
         {
@@ -106,7 +108,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (currentPlayer.gameOver)
+            return;
         canvasToUpdate.SetTime(UpdateTime());
+        if (currentPlayer.gameOver)
+            canvasToUpdate.AnimationGameOver();
     }
 
     public void FindCowboys()
@@ -119,6 +125,11 @@ public class GameManager : MonoBehaviour
 
     private string UpdateTime()
     {
+        if (gameTime.minutes < 0)
+        {
+            currentPlayer.gameOver = true;
+            return "00:00:00";
+        }
         if (gameTime.miliseconds <= 0)
         {
             if (gameTime.seconds <= 0)

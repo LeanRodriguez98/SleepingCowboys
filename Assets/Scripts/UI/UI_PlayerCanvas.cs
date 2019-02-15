@@ -24,4 +24,10 @@ public class UI_PlayerCanvas : MonoBehaviour {
     {
         remainingCowboysText.text = _remainingCowboysText;
     }
+
+    public void AnimationGameOver()
+    {
+        if (animator != null)
+            animator.SetTrigger("GameOver");
+    }
 }

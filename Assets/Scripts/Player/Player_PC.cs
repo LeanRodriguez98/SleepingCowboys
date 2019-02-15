@@ -23,27 +23,32 @@ public class Player_PC : Player
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (!gameOver)
         {
-            if(gun.Fire())
-                gun.SpawnBullet();
+            if (Input.GetButtonDown("Fire1"))
+            {
+                if (gun.Fire())
+                    gun.SpawnBullet();
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        
-        cameraRotationX -= Input.GetAxis("Mouse Y") * cameraSpeedVertical * Time.deltaTime;
-        cameraRotationY += Input.GetAxis("Mouse X") * cameraSpeedHorizontal * Time.deltaTime;
-        if (cameraRotationX > maxCameraAngleUp)
-            cameraRotationX = maxCameraAngleUp;
-        if (cameraRotationX < maxCameraAngleDown)
-            cameraRotationX = maxCameraAngleDown;
+        if (!gameOver)
+        {
+            cameraRotationX -= Input.GetAxis("Mouse Y") * cameraSpeedVertical * Time.deltaTime;
+            cameraRotationY += Input.GetAxis("Mouse X") * cameraSpeedHorizontal * Time.deltaTime;
+            if (cameraRotationX > maxCameraAngleUp)
+                cameraRotationX = maxCameraAngleUp;
+            if (cameraRotationX < maxCameraAngleDown)
+                cameraRotationX = maxCameraAngleDown;
 
-        cam.transform.eulerAngles = new Vector3(cameraRotationX, cam.transform.eulerAngles.y, 0.0f);
-        transform.eulerAngles = new Vector3(0.0f, cameraRotationY, 0.0f);
-        rb.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime) +
-                                             (transform.right * Input.GetAxis("Horizontal") * movementSpeed) * Time.deltaTime);
+            cam.transform.eulerAngles = new Vector3(cameraRotationX, cam.transform.eulerAngles.y, 0.0f);
+            transform.eulerAngles = new Vector3(0.0f, cameraRotationY, 0.0f);
+            rb.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime) +
+                                                 (transform.right * Input.GetAxis("Horizontal") * movementSpeed) * Time.deltaTime);
+        }
 
     }
 

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public Ray pointerRay;
     [HideInInspector] public Vector3 hitPosition;
-
+    [HideInInspector] public bool gameOver = false;
     public float shootTime;
     public float movementSpeed;
 

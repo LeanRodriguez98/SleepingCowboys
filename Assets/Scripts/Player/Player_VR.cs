@@ -41,9 +41,13 @@ public class Player_VR : Player
     // Update is called once per frame
     void Update()
     {
-        if (movement)
+        if (!gameOver)
         {
-            rb.position += (new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z) * Time.deltaTime * movementSpeed);
+
+            if (movement)
+            {
+                rb.position += (new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z) * Time.deltaTime * movementSpeed);
+            }
         }
     }
 
@@ -61,6 +65,7 @@ public class Player_VR : Player
 
     public void InvokeSpawnBullet()
     {
+        if(!gameOver)
         Invoke("SpawnBullet", shootTime);
     }
 

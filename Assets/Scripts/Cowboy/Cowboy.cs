@@ -17,6 +17,21 @@ public class Cowboy : MonoBehaviour
     private GameManager gameManagerInstance;
     private string[] bloodEffectsTags;
 
+    private AudioSource audioSource;
+
+    [System.Serializable]
+    public struct RandomVolume
+    {
+        public bool randomVolume;
+        [Range(0.0f, 1.0f)] public float minSnoringVolume;
+        [Range(0.0f, 1.0f)] public float maxSnoringVolume;
+    }
+
+    public AudioClip snoringClip;
+    public RandomVolume randomVolume;
+    
+    [Range(0.0f, 1.0f)] public float snoringVolume;
+
     public Vector3 colliderScale = Vector3.one / 3;
 
 
@@ -32,8 +47,32 @@ public class Cowboy : MonoBehaviour
         gameManagerInstance = GameManager.instance;
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         meshCollider = GetComponentInChildren<MeshCollider>();
-        bloodEffectsTags = poolManagerInstance.GetTagsGrup("Blood");
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = snoringClip;
 
+        if (randomVolume.randomVolume)
+        {
+            if (randomVolume.minSnoringVolume < randomVolume.maxSnoringVolume)
+            {
+                snoringVolume = Random.Range(randomVolume.minSnoringVolume, randomVolume.maxSnoringVolume);
+            }
+            else
+            {
+                Debug.LogWarning("The random Volume on" + gameObject.name + " posisionated in " + gameObject.transform.position + " have a minimum greater volume value (" + randomVolume.minSnoringVolume + ") at the maximum value (" + randomVolume.maxSnoringVolume + "). The minimum value it's assigned!");
+                snoringVolume = randomVolume.minSnoringVolume;
+            }
+        }
+        
+        audioSource.volume = snoringVolume;
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 1;
+        audioSource.loop = true;
+        audioSource.Play();
+
+
+        bloodEffectsTags = poolManagerInstance.GetTagsGrup("Blood");
     }
 
     public void InvokeDie()

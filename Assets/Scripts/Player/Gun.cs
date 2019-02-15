@@ -11,11 +11,13 @@ public class Gun : MonoBehaviour {
     private ObjectPooler objectPoolerInstance;
     private PoolManager poolManagerInstance;
     private string[] bulletsTags;
+    private string[] shootsTags;
     private void Start()
     {
         objectPoolerInstance = ObjectPooler.instance;
         poolManagerInstance = PoolManager.instance;
         bulletsTags = poolManagerInstance.GetTagsGrup("Bullet");
+        shootsTags = poolManagerInstance.GetTagsGrup("Shoots");
     }
 
   
@@ -54,5 +56,6 @@ public class Gun : MonoBehaviour {
         //EditorApplication.isPaused = true;
         bulletSpawnPoint.transform.LookAt(hitPoint);
         objectPoolerInstance.SpawnFromPool(bulletsTags[Random.Range(0,bulletsTags.Length)],bulletSpawnPoint.transform.position,bulletSpawnPoint.transform.rotation);
+        objectPoolerInstance.SpawnSoundFromPool(shootsTags[Random.Range(0, shootsTags.Length)], bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
     }
 }

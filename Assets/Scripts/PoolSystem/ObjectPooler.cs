@@ -96,6 +96,7 @@ public class ObjectPooler : MonoBehaviour
             {
                 PoolableAudio aso = Instantiate(poolSound.soundPrefab);
                 aso.transform.SetParent(this.gameObject.transform);
+                aso.SetAudioData();
                 aso.gameObject.SetActive(false);
                 soundPool.Enqueue(aso);
             }
@@ -161,7 +162,7 @@ public class ObjectPooler : MonoBehaviour
             goToSpawn.gameObject.transform.position = position;
             goToSpawn.gameObject.transform.rotation = rotation;
             soundsPoolsDictionary[tag].Enqueue(goToSpawn);
-            goToSpawn.PlayOneShot();
+            goToSpawn.Play();
             return goToSpawn;
         }
         return null;
@@ -183,7 +184,7 @@ public class ObjectPooler : MonoBehaviour
             goToSpawn.gameObject.transform.position = position;
             goToSpawn.gameObject.transform.rotation = rotation;
             soundsPoolsDictionary[tag].Enqueue(goToSpawn);
-            goToSpawn.PlayOneShot(time);
+            goToSpawn.Play(time);
             return goToSpawn;
         }
         return null;

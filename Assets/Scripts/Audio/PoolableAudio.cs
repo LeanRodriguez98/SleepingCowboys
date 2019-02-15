@@ -5,21 +5,33 @@ using UnityEngine;
 public class PoolableAudio : MonoBehaviour {
 
     public AudioClip clip;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
 
-    private void Start()
+    public void Start()
+    {
+        SetAudioData();
+    }
+
+    public void SetAudioData()
     {
         audioSource = GetComponent<AudioSource>();
+        audioSource.clip = clip;
+        audioSource.loop = false;
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0.5f;
+        audioSource.volume = 1;
     }
 
-    public void PlayOneShot()
+    public void Play()
     {
-        audioSource.PlayOneShot(clip);
+        audioSource
+            .
+            Play();
     }
 
-    public void PlayOneShot(float time)
+    public void Play(float time)
     {
-        Invoke("PlayOneShot", time);
+        Invoke("Play", time);
     }
 
     public float GetSoundDuration()

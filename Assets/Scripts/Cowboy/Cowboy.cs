@@ -60,7 +60,7 @@ public class Cowboy : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("The random Volume on" + gameObject.name + " posisionated in " + gameObject.transform.position + " have a minimum greater volume value (" + randomVolume.minSnoringVolume + ") at the maximum value (" + randomVolume.maxSnoringVolume + "). The minimum value it's assigned!");
+                Debug.LogWarning("The random Volume on " + gameObject.name + " posisionated in " + gameObject.transform.position + " have a minimum greater volume value (" + randomVolume.minSnoringVolume + ") at the maximum value (" + randomVolume.maxSnoringVolume + "). The minimum value it's assigned!");
                 snoringVolume = randomVolume.minSnoringVolume;
             }
         }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UI_PlayerCanvas : MonoBehaviour {
     public Text timeText;
     public Text remainingCowboysText;
-    private Animator animator;
+    public Animator animator;
 
     private void OnEnable()
     {

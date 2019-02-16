@@ -7,11 +7,12 @@ using UnityEngine.UI;
 public class UI_Pause : MonoBehaviour {
 
     public GameObject[] PauseMenu;
-
     [Header("This varibles it's only used in VR mode")]
     public Image buttonImage;
     public Sprite PauseSprite;
     public Sprite PlaySprite;
+    public GameObject[] areYouSurePanels;
+
     [Header("This varibles it's only used in PC mode")]
     public KeyCode pauseButton;
     private void Start()
@@ -48,6 +49,12 @@ public class UI_Pause : MonoBehaviour {
             if (buttonImage != null)
                 buttonImage.sprite = PauseSprite;
 
+            for (int i = 0; i < areYouSurePanels.Length; i++)
+            {
+                areYouSurePanels[i].SetActive(false);
+
+            }
+
             for (int i = 0; i < PauseMenu.Length; i++)
             {
                 PauseMenu[i].SetActive(false);
@@ -81,5 +88,15 @@ public class UI_Pause : MonoBehaviour {
         if (Time.timeScale != 1)
             Time.timeScale = 1;
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void EnableGameObject(GameObject go)
+    {
+        go.SetActive(true);
+    }
+
+    public void DisableGameObject(GameObject go)
+    {
+        go.SetActive(false);
     }
 }

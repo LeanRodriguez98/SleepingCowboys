@@ -12,9 +12,7 @@ public class UI_MainMenu : MonoBehaviour
     public GameObject tutorialImageVR;
 
 
-    public GameObject loadingPivot;
-    public Image loadingCircle;
-    public float loadingCircleSpeed;
+ 
 
     private AsyncOperation asyncLoading;
     public Animator fadeAnimator;
@@ -40,10 +38,7 @@ public class UI_MainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (loadingPivot.activeSelf)
-        {
-            loadingPivot.transform.Rotate(0, 0, -loadingCircleSpeed * Time.deltaTime);
-        }*/
+    
       
     }
 
@@ -59,7 +54,6 @@ public class UI_MainMenu : MonoBehaviour
 
     public void ChangeScene(string sceneName)
     {
-        //loadingPivot.SetActive(true);
         StartCoroutine(LoadAsyncScene(sceneName));
     }
 
@@ -81,5 +75,26 @@ public class UI_MainMenu : MonoBehaviour
         asyncLoading.allowSceneActivation = false;
         yield return new WaitForSeconds(1.0f);
     }
+
+    public void EnableGameObject(GameObject go)
+    {
+        go.SetActive(true);
+    }
+
+    public void DisableGameObject(GameObject go)
+    {
+        go.SetActive(false);
+    }
+
+    public void Exit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+
+    }
+
 }
     

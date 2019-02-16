@@ -83,8 +83,8 @@ public class GameManager : MonoBehaviour
         {
             cowboys[i].SetPlayer(player_VR.player);
         }
+        //UnityEngine.XR.XRSettings.LoadDeviceByName("Cardboard"); 
         UnityEngine.XR.XRSettings.enabled = true;
-
 
 
 #endif

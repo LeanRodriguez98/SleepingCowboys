@@ -21,6 +21,13 @@ public class UI_MainMenu : MonoBehaviour
 
 
     // Use this for initialization
+    private void Awake()
+    {
+#if UNITY_ANDROID
+        UnityEngine.XR.XRSettings.enabled = false;
+#endif
+    }
+
     void Start()
     {
         fadeAnimator = GetComponent<Animator>();

@@ -11,7 +11,8 @@ public class Player_VR : Player
     public GvrReticlePointer reticlePointer;
     public Camera cam;
 
-   
+    public GameObject pauseCanvas;
+    public GameObject gameOveranvas;
 
     public void ShootBullet()
     {
@@ -25,6 +26,8 @@ public class Player_VR : Player
         gun = GetComponentInChildren<Gun>();
         pointerRay = reticlePointer.GetRayForDistance(reticlePointer.ReticleDistanceInMeters).ray;
         hitPosition = reticlePointer.GetPointAlongPointer(reticlePointer.ReticleDistanceInMeters);
+        pauseCanvas.SetActive(true);
+        gameOveranvas.SetActive(false);
     }
 
     public override Ray GetPointerRay()
@@ -38,18 +41,25 @@ public class Player_VR : Player
         hitPosition = reticlePointer.GetPointAlongPointer(reticlePointer.ReticleDistanceInMeters);
         return hitPosition;
     }
+
+    public override void EnableGameOverCanvas()
+    {
+        pauseCanvas.SetActive(false);
+        gameOveranvas.SetActive(true);
+    }
     // Update is called once per frame
     void Update()
     {
         if (!gameOver)
         {
-
             if (movement)
             {
                 rb.position += (new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z) * Time.deltaTime * movementSpeed);
             }
         }
+        
     }
+
 
     public void EnableMovement()
     {

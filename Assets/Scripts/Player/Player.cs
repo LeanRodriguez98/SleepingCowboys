@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     public virtual Vector3 GetHitPosition()
     { return hitPosition; }
 
-   
+    public virtual void EnableGameOverCanvas()
+    { }
+
 }
 

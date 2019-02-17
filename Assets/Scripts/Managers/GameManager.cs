@@ -150,6 +150,7 @@ public class GameManager : MonoBehaviour
         if (gameTime.minutes < 0)
         {
             currentPlayer.gameOver = true;
+            currentPlayer.EnableGameOverCanvas();
             return "00:00:00";
         }
         if (gameTime.miliseconds <= 0)

@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool gameOver = false;
     public float shootTime;
     public float movementSpeed;
+    public float gameOverDelay = 0;
 
 
     public virtual Ray GetPointerRay()
@@ -22,8 +23,10 @@ public class Player : MonoBehaviour
     public virtual Vector3 GetHitPosition()
     { return hitPosition; }
 
-    public virtual void EnableGameOverCanvas()
+    public virtual void EnableGameOverCanvas(float t)
     { }
+
+   
 
 }
 

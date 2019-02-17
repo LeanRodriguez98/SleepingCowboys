@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player_PC : Player
 {
     public Camera cam;
+    public GameObject[] gameOverButtons;
     public float cameraSpeedHorizontal = 1.0f;
     public float cameraSpeedVertical = 1.0f;
     public float maxCameraAngleUp = 90.0f;
@@ -65,5 +66,20 @@ public class Player_PC : Player
         hitPosition = gun.GetHitPoint();
 
         return hitPosition;
+    }
+
+    public override void EnableGameOverCanvas(float t)
+    {
+        Invoke("ShowGameOverButtons", t);
+    }
+
+    public void ShowGameOverButtons()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        for (int i = 0; i < gameOverButtons.Length; i++)
+        {
+            gameOverButtons[i].SetActive(true);
+        }
     }
 }

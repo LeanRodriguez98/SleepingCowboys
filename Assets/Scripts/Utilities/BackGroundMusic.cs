@@ -14,7 +14,8 @@ public class BackGroundMusic : MonoBehaviour {
         if (instance == null)
             instance = this;
         else
-            gameObject.SetActive(false);
+            Destroy(gameObject);
+
     }
     void Start () {
         audioSource = GetComponent<AudioSource>();

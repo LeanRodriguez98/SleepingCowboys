@@ -12,7 +12,7 @@ public class Player_VR : Player
     public Camera cam;
 
     public GameObject pauseCanvas;
-    public GameObject gameOveranvas;
+    public GameObject gameOverCanvas;
 
     public void ShootBullet()
     {
@@ -27,7 +27,7 @@ public class Player_VR : Player
         pointerRay = reticlePointer.GetRayForDistance(reticlePointer.ReticleDistanceInMeters).ray;
         hitPosition = reticlePointer.GetPointAlongPointer(reticlePointer.ReticleDistanceInMeters);
         pauseCanvas.SetActive(true);
-        gameOveranvas.SetActive(false);
+        gameOverCanvas.SetActive(false);
     }
 
     public override Ray GetPointerRay()
@@ -42,10 +42,10 @@ public class Player_VR : Player
         return hitPosition;
     }
 
-    public override void EnableGameOverCanvas()
+    public override void EnableGameOverCanvas(float t)
     {
         pauseCanvas.SetActive(false);
-        gameOveranvas.SetActive(true);
+        gameOverCanvas.SetActive(true);
     }
     // Update is called once per frame
     void Update()

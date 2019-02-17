@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UI_GameOver : MonoBehaviour {
+    [Header("the main menu scene's name")]
     public string MainMenuSceneName;
     public void InvokeReplayLevel(float t)
     {

@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UI_PlayerCanvas : MonoBehaviour {
+    [Header("The canvas animator")]
+    public Animator animator;
+
+    [Header("The canvas texts")]
     public Text timeText;
     public Text remainingCowboysText;
-    public Animator animator;
 
     private void OnEnable()
     {

@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
+    [Header("The bullet speed")]
     public float bulletSpeed;
+    [Space(10)]
+    [Header("The time between the bullet spawn and disapear")]
     public float TimeOfLife;
-	void Start () {
-		
-	}
+	
     private void OnEnable()
     {
         Invoke("Disable", TimeOfLife);

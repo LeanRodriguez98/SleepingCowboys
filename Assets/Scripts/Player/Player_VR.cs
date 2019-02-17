@@ -5,14 +5,17 @@ using UnityEngine;
 
 public class Player_VR : Player
 {
+    [Space(10)]
+    [Header("Player VR' reticle pointer settings")]
+    public Camera cam;
+    public GvrReticlePointer reticlePointer;
+    [Space(10)]
+    [Header("Player VR' real space canvas")]
+    public GameObject pauseCanvas;
+    public GameObject gameOverCanvas;
 
     private bool movement = false;
 
-    public GvrReticlePointer reticlePointer;
-    public Camera cam;
-
-    public GameObject pauseCanvas;
-    public GameObject gameOverCanvas;
 
     public void ShootBullet()
     {

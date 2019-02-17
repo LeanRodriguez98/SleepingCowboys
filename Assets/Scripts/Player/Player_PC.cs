@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class Player_PC : Player
 {
-    public Camera cam;
+
+    [Header("The buttons of the gameover screen")]
     public GameObject[] gameOverButtons;
+    [Space(10)]
+    [Header("The FPS camera settings")]
+    public Camera cam;
     public float cameraSpeedHorizontal = 1.0f;
     public float cameraSpeedVertical = 1.0f;
     public float maxCameraAngleUp = 90.0f;
@@ -14,6 +18,7 @@ public class Player_PC : Player
     private float cameraRotationX = 0.0f;
     private float cameraRotationY = 0.0f;
    
+
     // Use this for initialization
     void Start()
     {

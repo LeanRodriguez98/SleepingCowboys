@@ -6,6 +6,7 @@ public class BackGroundMusic : MonoBehaviour {
 
     private static BackGroundMusic instance;
     private AudioSource audioSource;
+    [Header("The main music loop clip")]
     public AudioClip audioClip;
     [Range(0.0f,1.0f)] public float volume;
     private void Awake()

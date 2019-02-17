@@ -5,13 +5,18 @@ using UnityEditor;
 
 public class Gun : MonoBehaviour {
 
-    public GameObject bulletSpawnPoint;
-    public Camera cam;
     private Vector3 hitPoint;
     private ObjectPooler objectPoolerInstance;
     private PoolManager poolManagerInstance;
     private string[] bulletsTags;
     private string[] shootsTags;
+
+    [Header("The camera of the player")]
+    public Camera cam;
+    [Space(10)]
+    [Header("The point where the bullet spawn")]
+    public GameObject bulletSpawnPoint;
+
     private void Start()
     {
         objectPoolerInstance = ObjectPooler.instance;

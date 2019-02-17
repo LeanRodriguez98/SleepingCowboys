@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PoolableAudio : MonoBehaviour {
-
+    [Header("Clip to pool")]
     public AudioClip clip;
+    [Header("The audiosource component of this object")]
     public AudioSource audioSource;
 
     public void Start()
@@ -24,9 +25,7 @@ public class PoolableAudio : MonoBehaviour {
 
     public void Play()
     {
-        audioSource
-            .
-            Play();
+        audioSource.Play();
     }
 
     public void Play(float time)

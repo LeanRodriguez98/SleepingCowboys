@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    private Player currentPlayer;
+    private UI_PlayerCanvas canvasToUpdate;
+
     [System.Serializable]
     public struct Timer
     {
@@ -22,25 +25,29 @@ public class GameManager : MonoBehaviour
         public GameObject[] playerElements;
     }
 
+    
+
     [Header("Elements of the VR game")]
     public PlayerData player_VR;
     [Space(10)]
     [Header("Elements of the PC game")]
     public PlayerData player_PC;
     [Space(20)]
-
+    [Header("The time of the game")]
     public Timer gameTime;
-
-
+    [Space(10)]
+    [Header("The cowboys on the scene")]
     public List<Cowboy> cowboys;
+    [Header("The cowboys on the game")]
     public int cantOfCowboysInGame;
     private int auxCantOfCowboysInGame;
-
+    [Space(10)]
+    [Header("The easterEggs on the scene")]
     public List<EasterEgg> easterEggs;
+    [Header("The easterEggs on the game")]
     public int cantEsdterEggsInGame;
 
-    private Player currentPlayer;
-    private UI_PlayerCanvas canvasToUpdate;
+    
     // Use this for initialization
     private void Awake()
     {

@@ -6,16 +6,25 @@ using UnityEngine.SceneManagement;
 
 public class UI_MainMenu : MonoBehaviour
 {
+    [Header("Fade animatior")]
+    public Animator fadeAnimator;
+    [Space(10)]
+    [Header("Fade animations of:")]
+    [Header("   PC")]
     public RuntimeAnimatorController fadeAnimationPC;
+    [Header("   VR")]
     public RuntimeAnimatorController fadeAnimationVR;
+    [Header("Tutorial Image of:")]
+    [Header("   PC")]
     public GameObject tutorialImagePC;
+    [Header("   VR")]
     public GameObject tutorialImageVR;
 
 
- 
+
+
 
     private AsyncOperation asyncLoading;
-    public Animator fadeAnimator;
 
 
     // Use this for initialization

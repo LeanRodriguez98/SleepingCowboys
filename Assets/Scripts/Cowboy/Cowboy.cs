@@ -27,11 +27,15 @@ public class Cowboy : MonoBehaviour
         [Range(0.0f, 1.0f)] public float maxSnoringVolume;
     }
 
+    [Header("The idle loop clip")]
     public AudioClip snoringClip;
-    public RandomVolume randomVolume;
-    
+    [Space(10)]
+    [Header("The idle loop clip's volume")]
     [Range(0.0f, 1.0f)] public float snoringVolume;
+    public RandomVolume randomVolume;
 
+    [Space(10)]
+    [Header("The scale's multipler of the collidere")]
     public Vector3 colliderScale = Vector3.one / 3;
 
 
@@ -95,8 +99,7 @@ public class Cowboy : MonoBehaviour
 
         
             objectPoolerInstance.SpawnParticleFromPool(bloodEffectsTags[index], player.GetHitPosition(),
-              //Quaternion.FromToRotation(Vector3.up, hitInfo.normal));// Replace this whit the bottom code's line if the blood don't looks good. This line spawn the blood to the normal of the mesh 
-              Quaternion.Euler(player.gun.transform.eulerAngles - new Vector3(-180, 0, -180))); // and this line spawn the blood faceing the gun
+              Quaternion.Euler(player.gun.transform.eulerAngles - new Vector3(-180, 0, -180))); 
         Invoke("Desappear", objectPoolerInstance.GetParticleSistemLengh(bloodEffectsTags[index]));
         gameManagerInstance.UpdateRemainingCowboys(1);
     }

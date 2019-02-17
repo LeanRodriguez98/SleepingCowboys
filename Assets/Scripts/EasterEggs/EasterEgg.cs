@@ -5,15 +5,23 @@ using UnityEngine;
 public class EasterEgg : MonoBehaviour {
 
     private GameManager gameManagerInstance;
-    public GameManager.Timer timeToAdd;
-    public ParticleSystem particles;
-    public Collider capsuleCollider;
-    public MeshRenderer meshRenderer;
+ 
     private ObjectPooler objectPoolerInstance;
     private PoolManager poolManagerInstance;
     private string[] easterEggsTags;
     private float materialAlpha = 1.0f;
     private bool disappear = false;
+    [Header("The time of the player's gain if find it")]
+    public GameManager.Timer timeToAdd;
+    [Space(10)]
+    [Header("The particles thet spawn when the player's find it")]
+    public ParticleSystem particles;
+    [Space(10)]
+    [Header("The collider of this object")]
+    public Collider capsuleCollider;
+    [Space(10)]
+    [Header("The mesh renderer of this object")]
+    public MeshRenderer meshRenderer;
     private void Start()
     {
         gameManagerInstance = GameManager.instance;

@@ -13,10 +13,16 @@ public class Editor_GameManager : Editor
         base.OnInspectorGUI();
 
         GameManager gameManager = (GameManager)target;
-
+        GUILayout.BeginHorizontal();
         if (GUILayout.Button("Find Cowboys"))
         {
             gameManager.FindCowboys();
         }
+
+        if (GUILayout.Button("Find EasterEggs"))
+        {
+            gameManager.FindEasterEggs();
+        }
+        GUILayout.EndHorizontal();
     }
 }

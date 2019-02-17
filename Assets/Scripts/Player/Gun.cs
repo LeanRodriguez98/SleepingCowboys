@@ -37,6 +37,11 @@ public class Gun : MonoBehaviour {
                 cowboy.Die();
                 return true;
             }
+            EasterEgg easterEgg = hit.transform.GetComponent<EasterEgg>();
+            if (easterEgg != null)
+            {
+                easterEgg.EasterEggFinded();
+            }
         }
         return false;
     }

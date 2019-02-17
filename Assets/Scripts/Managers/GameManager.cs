@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     public int cantOfCowboysInGame;
     private int auxCantOfCowboysInGame;
 
+    public List<EasterEgg> easterEggs;
+    public int cantEsdterEggsInGame;
+
     private Player currentPlayer;
     private UI_PlayerCanvas canvasToUpdate;
     // Use this for initialization
@@ -101,6 +104,17 @@ public class GameManager : MonoBehaviour
             cowboys[i].gameObject.SetActive(false);
         }
 
+        for (int i = 0; i < cantEsdterEggsInGame; i++)
+        {
+            int r = Random.Range(0, easterEggs.Count);
+            easterEggs.Remove(easterEggs[r]);
+        }
+
+        for (int i = 0; i < easterEggs.Count; i++)
+        {
+            easterEggs[i].gameObject.SetActive(false);
+        }
+
         auxCantOfCowboysInGame = cantOfCowboysInGame;
         UpdateRemainingCowboys(0);
     }
@@ -121,6 +135,14 @@ public class GameManager : MonoBehaviour
         Cowboy[] c = FindObjectsOfType<Cowboy>();
         for (int i = 0; i < c.Length; i++)
             cowboys.Add(c[i]);
+    }
+
+    public void FindEasterEggs()
+    {
+        easterEggs = new List<EasterEgg>();
+        EasterEgg[] e = FindObjectsOfType<EasterEgg>();
+        for (int i = 0; i < e.Length; i++)
+            easterEggs.Add(e[i]);
     }
 
     private string UpdateTime()

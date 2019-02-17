@@ -125,8 +125,7 @@ public class GameManager : MonoBehaviour
         if (currentPlayer.gameOver)
             return;
         canvasToUpdate.SetTime(UpdateTime());
-        if (currentPlayer.gameOver)
-            canvasToUpdate.AnimationGameOver();
+       
     }
 
     public void FindCowboys()
@@ -151,6 +150,7 @@ public class GameManager : MonoBehaviour
         {
             currentPlayer.gameOver = true;
             currentPlayer.EnableGameOverCanvas(currentPlayer.gameOverDelay);
+            canvasToUpdate.AnimationGameOver();
             return "00:00:00";
         }
         if (gameTime.miliseconds <= 0)
@@ -177,7 +177,14 @@ public class GameManager : MonoBehaviour
     public void UpdateRemainingCowboys(int cant)
     {
         auxCantOfCowboysInGame-= cant;
+        if (auxCantOfCowboysInGame == 0)
+        {
+            currentPlayer.gameOver = true;
+            currentPlayer.EnableGameOverCanvas(currentPlayer.gameOverDelay);
+            canvasToUpdate.AnimationGameOver();
+        }
         canvasToUpdate.SetRemainingCowboys(auxCantOfCowboysInGame.ToString() + " /  " + cantOfCowboysInGame.ToString());
+
     }
 
 

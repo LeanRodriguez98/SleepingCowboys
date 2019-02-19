@@ -684,11 +684,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ab917c1d7d50242934673ac7ce020b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeAnimator: {fileID: 0}
   fadeAnimationPC: {fileID: 9100000, guid: 4ea6201439a86b041b256d248daa64eb, type: 2}
   fadeAnimationVR: {fileID: 9100000, guid: 033714aed7e17ab459237161c00032e5, type: 2}
   tutorialImagePC: {fileID: 835517562}
   tutorialImageVR: {fileID: 753049896}
-  fadeAnimator: {fileID: 0}
+  EventSystem: {fileID: 1015617397}
+--- !u!1001 &538406954
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4076250212954756, guid: 6db45ea00ced6d54b86a796244798775, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076250212954756, guid: 6db45ea00ced6d54b86a796244798775, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076250212954756, guid: 6db45ea00ced6d54b86a796244798775, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076250212954756, guid: 6db45ea00ced6d54b86a796244798775, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076250212954756, guid: 6db45ea00ced6d54b86a796244798775, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076250212954756, guid: 6db45ea00ced6d54b86a796244798775, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076250212954756, guid: 6db45ea00ced6d54b86a796244798775, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076250212954756, guid: 6db45ea00ced6d54b86a796244798775, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1411218153823970, guid: 6db45ea00ced6d54b86a796244798775, type: 2}
+      propertyPath: m_Name
+      value: EventSystem (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6db45ea00ced6d54b86a796244798775, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &542936357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,6 +1167,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 948191641}
   m_CullTransparentMesh: 0
+--- !u!1 &1015617397 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1411218153823970, guid: 6db45ea00ced6d54b86a796244798775,
+    type: 2}
+  m_PrefabInternal: {fileID: 538406954}
 --- !u!1 &1039214750
 GameObject:
   m_ObjectHideFlags: 0

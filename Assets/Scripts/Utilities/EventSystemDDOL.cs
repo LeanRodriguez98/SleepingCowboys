@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EventSystemDDOL : MonoBehaviour {
-    private EventSystemDDOL instance;
+    private static EventSystemDDOL instance;
 
     private void Awake()
     {

@@ -2,10 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Player_PC : Player
 {
-
     [Header("The buttons of the gameover screen")]
     public GameObject[] gameOverButtons;
     [Space(10)]

@@ -19,9 +19,9 @@ public class UI_MainMenu : MonoBehaviour
     public GameObject tutorialImagePC;
     [Header("   VR")]
     public GameObject tutorialImageVR;
-
-
-
+    [Space(10)]
+    [Header("The DontDestroyOnLoad Event System")]
+    public GameObject EventSystem;
 
 
     private AsyncOperation asyncLoading;
@@ -59,6 +59,13 @@ public class UI_MainMenu : MonoBehaviour
     public void LoadScene()
     {
         fadeAnimator.SetTrigger("FadeIn");
+#if UNITY_ANDROID
+
+        Destroy(EventSystem);
+        //In PC the menues don't works if the event system are not loaded before, but in Google vr the reticle pointer don't works if the scene have a event system
+        //Beacouse i do this, please don't hate me
+#endif
+
     }
 
     public void ChangeScene(string sceneName)

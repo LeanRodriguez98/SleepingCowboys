@@ -64,6 +64,8 @@ public class Player_VR : Player
             {
                 rb.position += (new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z) * Time.deltaTime * movementSpeed);
             }
+
+            gun.CheckFireAnimation();
         }
         
     }
@@ -92,6 +94,7 @@ public class Player_VR : Player
         gun.SetHitPoint(GetHitPosition());
         gun.SpawnBullet();
         SetMovementSpeed(boostSpeed);
+        gun.FireAnimation(true);
     }
 
     

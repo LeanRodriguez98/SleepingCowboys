@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33729827622130870}
   - component: {fileID: 23595883115726770}
   - component: {fileID: 114751540894425702}
+  - component: {fileID: 95226621222431624}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -113,6 +114,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1240747361630018}
   m_Mesh: {fileID: 4300000, guid: 5296b7a93dda7964f9beee2ec9133c85, type: 3}
+--- !u!95 &95226621222431624
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1240747361630018}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cbf52278abf35e84da0b9f48500b298f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114751540894425702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,5 +143,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac37d3750f8bf04ca3464062dbdee19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpawnPoint: {fileID: 1563369485559112}
   cam: {fileID: 0}
+  bulletSpawnPoint: {fileID: 1563369485559112}

@@ -17,12 +17,16 @@ public class Gun : MonoBehaviour {
     [Header("The point where the bullet spawn")]
     public GameObject bulletSpawnPoint;
 
+    private Animator anim;
+
     private void Start()
     {
         objectPoolerInstance = ObjectPooler.instance;
         poolManagerInstance = PoolManager.instance;
         bulletsTags = poolManagerInstance.GetTagsGrup("Bullet");
         shootsTags = poolManagerInstance.GetTagsGrup("Shoots");
+
+        anim = GetComponent<Animator>();
     }
 
   
@@ -40,6 +44,9 @@ public class Gun : MonoBehaviour {
             if (cowboy != null)
             {
                 cowboy.Die();
+
+                FireAnimation(true);
+
                 return true;
             }
             EasterEgg easterEgg = hit.transform.GetComponent<EasterEgg>();
@@ -67,5 +74,18 @@ public class Gun : MonoBehaviour {
         bulletSpawnPoint.transform.LookAt(hitPoint);
         objectPoolerInstance.SpawnFromPool(bulletsTags[Random.Range(0,bulletsTags.Length)],bulletSpawnPoint.transform.position,bulletSpawnPoint.transform.rotation);
         objectPoolerInstance.SpawnSoundFromPool(shootsTags[Random.Range(0, shootsTags.Length)], bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
+    }
+
+    public void FireAnimation(bool active)
+    {
+        anim.SetBool("Fired", active);
+    }
+
+    public void CheckFireAnimation()
+    {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Pistol_Fire"))
+        {
+            FireAnimation(false);
+        }
     }
 }

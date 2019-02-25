@@ -29,8 +29,6 @@ public class Player_PC : Player
     // Update is called once per frame
     void Update()
     {
-        
-
         if (!gameOver)
         {
             CheckSpeedTimer();
@@ -43,6 +41,8 @@ public class Player_PC : Player
                     SetMovementSpeed(boostSpeed);
                 }
             }
+
+            gun.CheckFireAnimation();
         }
     }
 

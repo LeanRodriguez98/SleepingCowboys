@@ -25,6 +25,9 @@ public class Player_VR : Player
     // Use this for initialization
     void Start()
     {
+        speed = movementSpeed;
+
+
         rb = GetComponent<Rigidbody>();
         gun = GetComponentInChildren<Gun>();
         pointerRay = reticlePointer.GetRayForDistance(reticlePointer.ReticleDistanceInMeters).ray;
@@ -55,6 +58,8 @@ public class Player_VR : Player
     {
         if (!gameOver)
         {
+            CheckSpeedTimer();
+
             if (movement)
             {
                 rb.position += (new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z) * Time.deltaTime * movementSpeed);
@@ -86,6 +91,7 @@ public class Player_VR : Player
     {
         gun.SetHitPoint(GetHitPosition());
         gun.SpawnBullet();
+        SetMovementSpeed(boostSpeed);
     }
 
     

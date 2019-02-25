@@ -22,17 +22,26 @@ public class Player_PC : Player
     {
         rb = GetComponent<Rigidbody>();
         gun = GetComponentInChildren<Gun>();
+
+        speed = movementSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+
         if (!gameOver)
         {
+            CheckSpeedTimer();
+
             if (Input.GetButtonDown("Fire1"))
             {
                 if (gun.Fire())
+                {
                     gun.SpawnBullet();
+                    SetMovementSpeed(boostSpeed);
+                }
             }
         }
     }

@@ -20,6 +20,13 @@ public class Player : MonoBehaviour
     [Header("   The delay between the time it's out our the player kill all cowboys and the fade image")]
     public float gameOverDelay = 0;
 
+    [Header("   The boost of movementSpeed")]
+    public float boostSpeed;
+    [Header("   The time the boost of movementSpeed last")]
+    public float boostTimer;
+
+    public float speed;
+    public float speedTimer;
 
     public virtual Ray GetPointerRay()
     { return pointerRay; }
@@ -30,7 +37,28 @@ public class Player : MonoBehaviour
     public virtual void EnableGameOverCanvas(float t)
     { }
 
-   
+    public void SetMovementSpeed(float _movementSpeed)
+    {
+        movementSpeed = _movementSpeed;
+    }
 
+    public void ResetMovementSpeed()
+    {
+        movementSpeed = speed;
+    }
+
+    public void CheckSpeedTimer()
+    {
+        if (movementSpeed != speed)
+        {
+            speedTimer += Time.deltaTime;
+
+            if (speedTimer >= boostTimer)
+            {
+                speedTimer = 0;
+                SetMovementSpeed(speed);
+            }
+        }
+    }
 }
 
